@@ -1,0 +1,22 @@
+{
+  "name": "time-planner",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "sass-watch": "sass --watch public/sass/main.scss:public/css/main.css"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "sass": "^1.89.2"
+  },
+  "dependencies": {
+    "bootstrap": "^5.3.7",
+    "bs-icon": "^0.0.8",
+    "jquery": "^3.7.1"
+  }
+}

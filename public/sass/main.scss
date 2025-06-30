@@ -1,0 +1,98 @@
+// Variables
+$primary-color: #3498db;
+$font-stack: Arial, sans-serif;
+
+// Nesting
+body {
+  font-family: $font-stack;
+  margin: 5px;
+  padding: 0;
+  background: #80808014;
+}
+
+// Display Goal Planner Type
+
+.card {
+
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px !important;
+  border: none;
+  margin-top: 15px;
+  margin-bottom: 15px;
+
+  .card-text{
+    margin: 0px;
+  }
+
+  #goal_cards{
+    height: 210px !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  #goal_type{
+    display: flex;
+    gap: 9px;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .card_main_title{
+    text-align: center;
+    font-size: 25px;
+    font-weight: bold;
+    margin-top: 10px;
+  }
+
+  .hover-underline {
+    display: inline-block;
+    position: relative;
+    text-align: center;
+    cursor: pointer;
+  }
+
+  /* Default underline (centered and short) */
+  .hover-underline::after {
+    content: '';
+    position: absolute;
+    width: 20%; /* Default short width */
+    height: 3px;
+    bottom: -4px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #3498db;
+    transition: width 0.3s ease;
+  }
+
+  /* Hover effect (expands to full text width) */
+  .hover-underline:hover::after {
+    width: 100%;
+  }
+}
+
+
+th{
+  text-transform: capitalize;
+  text-align: center;
+}
+
+.goal_status{
+  border: 2px solid transparent;
+  height: 30px;
+  width: 50%;
+  cursor: pointer;
+}
+
+// Mixin
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.button {
+  @include flex-center;
+  background: $primary-color;
+  color: white;
+}
