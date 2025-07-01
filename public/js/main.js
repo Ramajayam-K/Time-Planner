@@ -107,14 +107,26 @@ function prepareGoalTypeContent() {
     GoalTypeArr.forEach((data, index) => {
       content += `
                 <div class="card" style="width: 18rem;">
-                    <img src="${data.image}" class="card-img-top" alt="${data.alt}">
+                    <img src="${data.image}" class="card-img-top" alt="${
+        data.alt
+      }">
                     <div class="card-body" id="goal_cards">
                         <h5 class="card-title">${data.name}</h5>
                         <p class="card-text">${data.description}</p>
                         <div class="action_button">
                             <hr>
-                            <button href="#" class="btn btn-primary"><i class="bi bi-plus-circle-fill"></i></button>
-                            <button href="#" class="btn btn-primary"><i class="bi bi-eye-fill"></i></button>
+                            <button href="#" class="btn btn-primary" id="openGoalModal" type="${data.name
+                              .toLowerCase()
+                              .replaceAll(
+                                " ",
+                                "_"
+                              )}"><i class="bi bi-plus-circle-fill"></i></button>
+                            <button href="#" class="btn btn-primary" type="${data.name
+                              .toLowerCase()
+                              .replaceAll(
+                                " ",
+                                "_"
+                              )}"><i class="bi bi-eye-fill"></i></button>
                         </div>
                     </div>
                 </div>
@@ -124,7 +136,7 @@ function prepareGoalTypeContent() {
     content = "Something went wrong please content admin.";
   }
 
-  $("#goal_type").html(content);
+  $("#goal_time_planner").html(content);
 }
 
 prepareGoalTypeContent();
@@ -199,24 +211,23 @@ function prepareMainGoalListViewContent(id, data) {
 
   if (data.length > 0) {
     data.forEach((data, index) => {
-      let status = "",status_backgound='';
+      let status = "",
+        status_backgound = "";
       if (data.status == "pending") {
         status = `<span class="badge text-warning-emphasis">
             <i class="bi bi-hourglass"></i>
         </span>`;
-        status_backgound='bg-warning-subtle';
+        status_backgound = "bg-warning-subtle";
       } else if (data.status == "completed") {
         status = `<span class="badge text-success-emphasis">
             <i class="bi bi-check-circle"></i>
         </span>`;
-        status_backgound='bg-success-subtle';
-
+        status_backgound = "bg-success-subtle";
       } else {
         status = `<span class="badge text-danger-emphasis">
             <i class="bi bi-x-circle-fill"></i>
         </span>`;
-        status_backgound='bg-danger-subtle';
-
+        status_backgound = "bg-danger-subtle";
       }
 
       content += `
@@ -247,4 +258,68 @@ function prepareMainGoalListViewContent(id, data) {
 
 planArr.forEach((data, index) => {
   prepareMainGoalListViewContent(data.id, data.data);
+});
+
+var modelData = [
+  {
+    name: "goal",
+    id: "goalModal",
+  },
+  {
+    name: "year",
+    id: "yearModal",
+  },
+  {
+    name: "month",
+    id: "monthModal",
+  },
+  {
+    name: "week",
+    id: "weekModal",
+  },
+  {
+    name: "daily",
+    id: "dailyModal",
+  },
+];
+
+// function modelPrepare(modelData) {
+//   let modalContent = "";
+//   modelData.forEach((data, index) => {
+//     modalContent += `
+//       <div class="modal" id="${data.id}" tabindex="-1">
+//         <div class="modal-dialog">
+//           <div class="modal-content">
+//             <div class="modal-header">
+//               <h5 class="modal-title">Modal title</h5>
+//               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+//             </div>
+//             <div class="modal-body">
+//               <p>Modal body text goes here.</p>
+//             </div>
+//             <div class="modal-footer">
+//               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+//               <button type="button" class="btn btn-primary" type="${data.name}">Save changes</button>
+//             </div>
+//           </div>
+//         </div>
+//       </div>`;
+//   });
+
+//   console.log(modalContent);
+//   $("body").append(modalContent);
+// }
+
+// modelPrepare(modelData);
+
+$(document).on("click", "#openGoalModal", function (e) {
+  $("#goalModalTitle").text(
+    "Create New " + $(this).parent().prev().prev().text()
+  );
+  $("#save_update_goal").text("save");
+  $('#goal_type,[for="goal_type"]').hide();
+  if ($(this).attr("type") != "goal_planner") {
+    $('#goal_type,[for="goal_type"]').show();
+  }
+  $("#goalModal").modal("show");
 });

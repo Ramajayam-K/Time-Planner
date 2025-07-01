@@ -1,6 +1,6 @@
 // Variables
 $primary-color: #3498db;
-$font-stack: Arial, sans-serif;
+$font-stack: ui-monospace;
 
 // Nesting
 body {
@@ -30,7 +30,7 @@ body {
     justify-content: space-between;
   }
 
-  #goal_type{
+  #goal_time_planner{
     display: flex;
     gap: 9px;
     justify-content: center;
@@ -78,10 +78,11 @@ th{
 }
 
 .goal_status{
-  border: 2px solid transparent;
   height: 30px;
   width: 50%;
   cursor: pointer;
+  margin: 0px;
+  border: 2px solid;
 }
 
 // Mixin
@@ -91,8 +92,19 @@ th{
   align-items: center;
 }
 
-.button {
-  @include flex-center;
-  background: $primary-color;
-  color: white;
+// .button {
+//   @include flex-center;
+//   background: $primary-color;
+//   color: white;
+// }
+
+label{
+  text-transform: capitalize;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+#goal_description{
+    resize: none;
+    height: 200px;
 }

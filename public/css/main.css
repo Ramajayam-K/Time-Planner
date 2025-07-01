@@ -1,5 +1,5 @@
 body {
-  font-family: Arial, sans-serif;
+  font-family: ui-monospace;
   margin: 5px;
   padding: 0;
   background: rgba(128, 128, 128, 0.0784313725);
@@ -22,7 +22,7 @@ body {
   flex-direction: column;
   justify-content: space-between;
 }
-.card #goal_type {
+.card #goal_time_planner {
   display: flex;
   gap: 9px;
   justify-content: center;
@@ -62,10 +62,11 @@ th {
 }
 
 .goal_status {
-  border: 2px solid transparent;
   height: 30px;
   width: 50%;
   cursor: pointer;
+  margin: 0px;
+  border: 2px solid;
 }
 
 .button {
@@ -76,4 +77,14 @@ th {
   color: white;
 }
 
+label{
+  text-transform: capitalize;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+#goal_description{
+    resize: none;
+    height: 200px;
+}
 /*# sourceMappingURL=main.css.map */
