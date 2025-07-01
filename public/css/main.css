@@ -1,6 +1,6 @@
 body {
   font-family: ui-monospace;
-  margin: 5px;
+  margin: 0px;
   padding: 0;
   background: rgba(128, 128, 128, 0.0784313725);
 }
@@ -8,8 +8,7 @@ body {
 .card {
   box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px !important;
   border: none;
-  margin-top: 15px;
-  margin-bottom: 15px;
+  margin: 15px;
   /* Default underline (centered and short) */
   /* Hover effect (expands to full text width) */
 }
@@ -56,6 +55,10 @@ body {
   width: 100%;
 }
 
+.goal_status i {
+  font-size: 18px;
+}
+
 th {
   text-transform: capitalize;
   text-align: center;
@@ -66,25 +69,18 @@ th {
   width: 50%;
   cursor: pointer;
   margin: 0px;
-  border: 2px solid;
+  border: 2px solid ghostwhite;
 }
 
-.button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: #3498db;
-  color: white;
-}
-
-label{
+label {
   text-transform: capitalize;
   margin-top: 10px;
   font-weight: bold;
 }
 
-#goal_description{
-    resize: none;
-    height: 200px;
+#goal_description {
+  resize: none;
+  height: 200px;
 }
+
 /*# sourceMappingURL=main.css.map */

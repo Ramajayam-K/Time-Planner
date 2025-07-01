@@ -192,7 +192,7 @@ prepareGoalListViewContent();
 
 function prepareMainGoalListViewContent(id, data) {
   let content = `
-    <table class="table table-hover table-bordered">
+    <table id="${id}_table"class="table table-hover table-bordered">
         <thead>
             <tr>
                 <th>Sl</th>
@@ -213,21 +213,21 @@ function prepareMainGoalListViewContent(id, data) {
     data.forEach((data, index) => {
       let status = "",
         status_backgound = "";
-      if (data.status == "pending") {
-        status = `<span class="badge text-warning-emphasis">
-            <i class="bi bi-hourglass"></i>
-        </span>`;
-        status_backgound = "bg-warning-subtle";
+      if (data.status == "waiting") {
+        status = `<span class="badge text-danger-emphasis">
+            <i class="bi bi-x-circle-fill text-danger"></i>
+          </span>`;
+        status_backgound = "bg-danger-subtle";
       } else if (data.status == "completed") {
         status = `<span class="badge text-success-emphasis">
-            <i class="bi bi-check-circle"></i>
-        </span>`;
+              <i class="bi bi-check-circle text-success"></i>
+          </span>`;
         status_backgound = "bg-success-subtle";
       } else {
-        status = `<span class="badge text-danger-emphasis">
-            <i class="bi bi-x-circle-fill"></i>
-        </span>`;
-        status_backgound = "bg-danger-subtle";
+        status = `<span class="badge text-warning-emphasis">
+              <i class="bi bi-hourglass text-dark"></i>
+          </span>`;
+        status_backgound = "bg-warning-subtle";
       }
 
       content += `
@@ -254,63 +254,45 @@ function prepareMainGoalListViewContent(id, data) {
   content += "</tbody></table>";
 
   $("#" + id).html(content);
+  $("#" + id + "_table").DataTable({
+    responsive: true,
+  });
 }
 
 planArr.forEach((data, index) => {
   prepareMainGoalListViewContent(data.id, data.data);
 });
 
-var modelData = [
-  {
-    name: "goal",
-    id: "goalModal",
-  },
-  {
-    name: "year",
-    id: "yearModal",
-  },
-  {
-    name: "month",
-    id: "monthModal",
-  },
-  {
-    name: "week",
-    id: "weekModal",
-  },
-  {
-    name: "daily",
-    id: "dailyModal",
-  },
-];
-
-// function modelPrepare(modelData) {
-//   let modalContent = "";
-//   modelData.forEach((data, index) => {
-//     modalContent += `
-//       <div class="modal" id="${data.id}" tabindex="-1">
-//         <div class="modal-dialog">
-//           <div class="modal-content">
-//             <div class="modal-header">
-//               <h5 class="modal-title">Modal title</h5>
-//               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-//             </div>
-//             <div class="modal-body">
-//               <p>Modal body text goes here.</p>
-//             </div>
-//             <div class="modal-footer">
-//               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-//               <button type="button" class="btn btn-primary" type="${data.name}">Save changes</button>
-//             </div>
-//           </div>
-//         </div>
-//       </div>`;
-//   });
-
-//   console.log(modalContent);
-//   $("body").append(modalContent);
-// }
-
-// modelPrepare(modelData);
+$(document).on("click", ".goal_status", function (e) {
+  if ($(this).children().children().hasClass("bi-hourglass")) {
+    $(this).removeClass("bg-warning-subtle").addClass("bg-success-subtle");
+    $(this)
+      .children()
+      .children()
+      .removeClass("bi-hourglass")
+      .addClass("bi-check-circle")
+      .removeClass("text-dark")
+      .addClass("text-success");
+  } else if ($(this).children().children().hasClass("bi-check-circle")) {
+    $(this).removeClass("bg-success-subtle").addClass("bg-danger-subtle");
+    $(this)
+      .children()
+      .children()
+      .removeClass("bi-check-circle")
+      .addClass("bi-x-circle-fill")
+      .removeClass("text-success")
+      .addClass("text-danger");
+  } else {
+    $(this).removeClass("bg-danger-subtle").addClass("bg-warning-subtle");
+    $(this)
+      .children()
+      .children()
+      .removeClass("bi-x-circle-fill")
+      .addClass("bi-hourglass")
+      .removeClass("text-danger")
+      .addClass("text-dark");
+  }
+});
 
 $(document).on("click", "#openGoalModal", function (e) {
   $("#goalModalTitle").text(

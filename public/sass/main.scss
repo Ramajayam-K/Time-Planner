@@ -5,7 +5,7 @@ $font-stack: ui-monospace;
 // Nesting
 body {
   font-family: $font-stack;
-  margin: 5px;
+  margin: 0px;
   padding: 0;
   background: #80808014;
 }
@@ -16,8 +16,7 @@ body {
 
   box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px !important;
   border: none;
-  margin-top: 15px;
-  margin-bottom: 15px;
+  margin: 15px;
 
   .card-text{
     margin: 0px;
@@ -71,6 +70,9 @@ body {
   }
 }
 
+.goal_status i{
+  font-size: 18px;
+}
 
 th{
   text-transform: capitalize;
@@ -82,7 +84,7 @@ th{
   width: 50%;
   cursor: pointer;
   margin: 0px;
-  border: 2px solid;
+  border: 2px solid ghostwhite;
 }
 
 // Mixin
